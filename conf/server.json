@@ -1,0 +1,10 @@
+{
+    "mode":"dev",
+
+    "db.driver": "mysql",
+    "db.addr": "123.123.123.123",
+    "db.port": "3306",
+    "db.user": "user",
+    "db.pwd": "pwd",
+    "db.name": "DATABASE"
+}
