@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"fmt"
 	"io/ioutil"
 
 	"gopkg.in/yaml.v3"
@@ -17,8 +18,13 @@ type Config struct {
 		Port     string `yaml:"port"`
 		User     string `yaml:"user"`
 		Password string `yaml:"password"`
-		Name     string `yaml:"name"`
+		Name     string `yaml:"db"`
 	} `yaml:"database"`
+	Kafka struct {
+		BootstrapServers []string `yaml:"bootstrap-servers"`
+		GroupId          string   `yaml:"group-id"`
+		Topics           []string `yaml:"topics"`
+	} `yaml:"kafka"`
 }
 
 func LoadServerConfig() *Config {
@@ -36,6 +42,7 @@ func LoadServerConfig() *Config {
 		panic(err)
 	}
 
-	return &config
+	fmt.Println("::: Config Loaded => [", config, "]")
 
+	return &config
 }

@@ -1,9 +1,0 @@
-server:
-  mode: dev
-database:
-  type: mysql
-  host: 123.123.123.123
-  port: 3306
-  user: adm
-  password: password
-  name: db
