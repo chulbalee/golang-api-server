@@ -24,10 +24,13 @@ func settingMiddleware(e *echo.Echo, config conf.Config) {
 		LogStatus: true,
 		LogURI:    true,
 		BeforeNextFunc: func(c echo.Context) {
-			logImpl.InsertLog("test data")
+
 		},
 		LogValuesFunc: func(c echo.Context, v middleware.RequestLoggerValues) error {
-			fmt.Printf("REQUEST: uri: %v, status: %v, method: %v\n", v.URI, v.Status, v.Method)
+			msg := fmt.Sprintf("REQUEST: uri: %v, status: %v, method: %v\n", v.URI, v.Status, v.Method)
+			logImpl.InsertMsg(msg)
+
+			fmt.Printf(msg)
 			return nil
 		},
 	}))

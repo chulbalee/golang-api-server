@@ -1,6 +1,7 @@
 package kafka
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -58,10 +59,15 @@ func (k *Kafka) Init(clienId string, bootstrapServers []string, topic string) {
 	fmt.Println("::: KAFKA INIT DONE")
 }
 
-func (k *Kafka) Produce(msg string) {
+func (k *Kafka) Produce(data interface{}) {
+
+	var bytes []byte
+
+	bytes, _ = json.Marshal(data)
+
 	err := k.Producer.Produce(&kafka.Message{
 		TopicPartition: kafka.TopicPartition{Topic: &k.topic, Partition: kafka.PartitionAny},
-		Value:          []byte(msg)},
+		Value:          bytes},
 		k.iChan,
 	)
 
