@@ -45,12 +45,10 @@ func settingMiddleware(e *echo.Echo, config conf.Config) {
 
 func main() {
 	var config conf.Config
-	var db db.Database
 
 	config = *conf.LoadServerConfig()
 
 	db.InitDatabase(config)
-	_ = db
 
 	e := echo.New()
 
