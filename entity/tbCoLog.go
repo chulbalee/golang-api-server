@@ -5,7 +5,7 @@ func (Tb_co_log) TableName() string {
 }
 
 type Tb_co_log struct {
-	Id  int    `json:"id"`
-	Tx  string `json:"tx"`
-	Msg string `json:"msg"`
+	BasDt string
+	Id    string
+	Msg   string
 }

@@ -3,6 +3,7 @@ package common
 import (
 	"golang-api-server/entity"
 	"golang-api-server/kafka"
+	"time"
 )
 
 type TbCoLogSvcImpl struct {
@@ -10,7 +11,7 @@ type TbCoLogSvcImpl struct {
 }
 
 const (
-	TOPIC = "tb_co_log"
+	TOPIC = "TB_CO_LOG_HIST"
 )
 
 func (t *TbCoLogSvcImpl) Init(clienId string, bootstrapServers []string) {
@@ -23,8 +24,7 @@ func (t *TbCoLogSvcImpl) InsertJson(data entity.Tb_co_log) {
 
 func (t *TbCoLogSvcImpl) InsertMsg(msg string) {
 	logJson := entity.Tb_co_log{}
-	logJson.Id = 1
-	logJson.Tx = "aaa001"
+	logJson.BasDt = time.Now().Format("20060102")
 	logJson.Msg = msg
 
 	t.kafka.Produce(logJson)
